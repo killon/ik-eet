@@ -1,17 +1,14 @@
-<?php
-ob_start();
-session_start();
-?>
-
 <!DOCTYPE html>
-<!-- saved from url=(0043)http://startbootstrap.com/templates/agency/ -->
+<!-- saved from url=(0042)http://getbootstrap.com/examples/carousel/ -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+
 
     <title>Ikeet: wat eet ik vandaag</title>
 
@@ -36,82 +33,139 @@ session_start();
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-</head>
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<body>
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="js/ie-emulation-modes-warning.js"></script>
 
-<?php
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Custom styles for this template -->
+  </head>
+<!-- NAVBAR
+================================================== -->
+  <body cz-shortcut-listen="true">
+  	<?php
 	include('database.php');
 ?>
 
-<div class="container">
 
-	<div id="plato">
-	</div>
-	<div id="botones">
-	</div>
-</div>
+    <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+<!--       <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+      </ol> -->
 
-<script src="js/jquery-1.11.0.js"></script>
+      <div class="carousel-inner"> 
+<!--       	content added via js  -->	  
+	  </div>       
+<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span
+class="glyphicon glyphicon-chevron-left"></span></a> 
 
-<script type="text/javascript">
-$(document).ready(function () {
-
-  	var recetas = '<?php
-
-	      // Get data from the database depending on the value of the id 
-	      $strSQL = "SELECT * FROM `recetas`";
-	      $rs = mysql_query($strSQL);
-	      
-	      $json_response = array();
-
-	      while ($row = mysql_fetch_array($rs, MYSQL_ASSOC)) {
-	          $row_array['id'] = $row['id']; 
-	          $row_array['nombre'] = $row['comida'];
-	          $row_array['foto'] = $row['foto']; 
-
-	    //push the values in the array
-	    array_push($json_response,$row_array);
-	      }
-	      echo json_encode($json_response);
-
-	      // Close the database connection
-	      mysql_close();
-	      ?>';
+<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span
+class="glyphicon glyphicon-chevron-right"></span></a> </div><!-- /.carousel -->
 
 
-	var obj = $.parseJSON(recetas);
 
-	random = Math.floor(Math.random()*obj.length);
-	var plato_dia = obj[random].nombre;
-	var plato_foto = obj[random].foto;
 
-	var carousel = document.getElementById("plato");
 
-	var menu = '<div><img src="images/' + plato_foto + '" style="width:100%;"></div><h3>' + plato_dia + '</h3>';
-	carousel.innerHTML += menu;
+      <!-- FOOTER -->
+      <footer>
+      </footer>
 
-	var botas = '<div class="row" style="height:100px"><a class="btn btn-primary btn-danger pull-right" id="quitar_receta" style="height:100%; width:50%" href="#"><span class="glyphicon glyphicon-remove"></span></a><a class="btn btn-primary btn-success pull-right" id="mostrar_receta" style="height:100%; width:50%"><span class="glyphicon glyphicon-ok"></span></a></div><div class="row"><a class="btn btn-primary pull-right" style="width:50%" href="recetas.php">Elige un plato</a><a class="btn btn-primary pull-right" style="width:50%" href="nueva_receta.php">Nueva receta</a></div>';
-	var divbotones = document.getElementById("botones");
-	divbotones.innerHTML += botas;
+    </div><!-- /.container -->
 
-	$('#quitar_receta').click(function() {
-		$( "#plato" ).empty();
-		// $( "#botones" ).empty();
-		obj.splice(random, 1);
-		random = Math.floor(Math.random()*obj.length);
-		var plato_dia2 = obj[random].nombre;
-		var plato_foto2 = obj[random].foto;
-		var plato_id = obj[random].id;
-		var menu2 = '<div><img src="images/' + plato_foto2 + '" style="width:100%;"></div><h3>' + plato_dia2 + '</h3>';
-		carousel.innerHTML += menu2;
-		$( "#mostrar_receta" ).attr("href","receta.php?id=" + plato_id + "");
-		// var botas = '<div class="row" style="height:100px"><a class="btn btn-primary btn-danger pull-right" id="quitar_receta" style="height:100%; width:50%" href="#"><span class="glyphicon glyphicon-remove"></span></a><a class="btn btn-primary btn-success pull-right" style="height:100%; width:50%" href="http://ikeet.hol.es/receta.php?id=' + obj[random].id + '"><span class="glyphicon glyphicon-ok"></span></a></div><div class="row"><a class="btn btn-primary" style="width:100%" href="http://ikeet.hol.es/recetas.php">Elige un plato</a></div>';
-		// var divbotones = document.getElementById("botones");
-		// divbotones.innerHTML += botas;
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>    
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/docs.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+
+        var recetas = '<?php
+
+            // Get data from the database depending on the value of the id 
+            $strSQL = "SELECT * FROM `recetas`";
+            $rs = mysql_query($strSQL);
+            
+            $json_response = array();
+
+            while ($row = mysql_fetch_array($rs, MYSQL_ASSOC)) {
+                $row_array['id'] = $row['id']; 
+                $row_array['nombre'] = $row['comida'];
+                $row_array['foto'] = $row['foto']; 
+
+          //push the values in the array
+          array_push($json_response,$row_array);
+            }
+            echo json_encode($json_response);
+
+            // Close the database connection
+            mysql_close();
+            ?>';
+
+
+      var obj = $.parseJSON(recetas);
+
+      // random = Math.floor(Math.random()*obj.length);
+      // var plato_dia = obj[random].nombre;
+      // var plato_foto = obj[random].foto;
+
+      var carousel = document.getElementsByClassName("carousel-inner");
+
+      for (var i=0; i < obj.length; i++) {
+        var menu = '<div class="item"><img class="img-responsive" src="images/' + obj[i].foto + '" alt=""><div class="container"><div class="carousel-caption"><h1>' + obj[i].nombre + '</h1><p><a class="btn btn-lg btn-primary" href="#" role="button">Ver receta</a></p></div></div></div>';
+        carousel[0].innerHTML += menu;
+      }
+      $(".carousel-inner .item:first-child").addClass("active");
+      // $('#quitar_receta').click(function() {
+      //  $( "#plato" ).empty();
+      //  // $( "#botones" ).empty();
+      //  obj.splice(random, 1);
+      //  random = Math.floor(Math.random()*obj.length);
+      //  var plato_dia2 = obj[random].nombre;
+      //  var plato_foto2 = obj[random].foto;
+      //  var plato_id = obj[random].id;
+      //  var menu2 = '<div><img src="images/' + plato_foto2 + '" style="width:100%;"></div><h3>' + plato_dia2 + '</h3>';
+      //  carousel.innerHTML += menu2;
+      //  $( "#mostrar_receta" ).attr("href","receta.php?id=" + plato_id + "");
+     //    });
     });
-});
 
-</script>
+  </script>
 
-</body>
+    <script>
+      $(document).ready(function() {  
+            $('#myCarousel').hammer().on('swipeleft', function(){
+              $(this).carousel('next'); 
+            })
+            $('#myCarousel').hammer().on('swiperight', function(){
+              $(this).carousel('prev'); 
+            })
+       }); 
+    </script>
+
+
+
+
+
+
+
+
+
+

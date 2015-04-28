@@ -9,7 +9,7 @@ html {
 }
 
 body {
-    height: 50%;
+    height: 100%;
 }
 
 .carousel {
@@ -26,6 +26,15 @@ body {
 
 .carousel-control.left, .carousel-control.right {
   background-image: none;
+}
+
+.carousel-caption {
+    bottom: 0px;
+    color: #000;
+    text-shadow: none;
+    position: relative;
+    right: 0px;
+    left: 0px;
 }
 /*#botones {
     position: fixed;

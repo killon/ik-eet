@@ -36,7 +36,7 @@
 
     <!-- Carousel
     ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
       <!-- Indicators -->
 <!--       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class=""></li>
@@ -87,6 +87,7 @@ class="glyphicon glyphicon-chevron-right"></span></a> </div><!-- /.carousel -->
                 $row_array['id'] = $row['id']; 
                 $row_array['nombre'] = $row['nombre'];
                 $row_array['foto'] = $row['foto']; 
+                $row_array['receta'] = $row['receta']; 
 
           //push the values in the array
           array_push($json_response,$row_array);
@@ -107,7 +108,7 @@ class="glyphicon glyphicon-chevron-right"></span></a> </div><!-- /.carousel -->
       var carousel = document.getElementsByClassName("carousel-inner");
 
       for (var i=0; i < obj.length; i++) {
-        var menu = '<div class="item"><img class="img-responsive" src="images/' + obj[i].foto + '" alt=""><div class="container"><div class="carousel-caption"><h1>' + obj[i].nombre + '</h1><p><a class="btn btn-lg btn-primary" href="#" role="button">Ver receta</a></p></div></div></div>';
+        var menu = '<div class="item"><img class="img-responsive" src="images/' + obj[i].foto + '" alt=""><div class="carousel-caption"><h4>' + obj[i].nombre + '</h4><p>' + obj[i].receta + '</p></div></div></div>';
         carousel[0].innerHTML += menu;
       }
       $(".carousel-inner .item:first-child").addClass("active");

@@ -1,8 +1,9 @@
-<?php 
-
-  //Start session
-  session_start();
+<?php
+// Start the session
+session_start();
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -127,22 +128,9 @@
 <!-- jQuery -->
 <script src="js/jquery-1.11.0.js"></script>
 
-<!-- cookie -->
-
-<script src="js/jquery.cookie.js"></script>
-
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
 
-<!-- Metis Menu Plugin JavaScript -->
-<script src="js/plugins/metisMenu/metisMenu.min.js"></script>
-
-<!-- Custom Theme JavaScript -->
-<script src="js/sb-admin-2.js"></script>
-
-<!-- Customize upload button -->
-
-<script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
 
 </body>
 

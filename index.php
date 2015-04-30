@@ -66,16 +66,13 @@
 
       <div class="carousel-inner"> 
 <!--       	content added via js  -->	  
-	  </div>       
-<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span
-class="glyphicon glyphicon-chevron-left"></span></a> 
+	    </div>       
 
-<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span
-class="glyphicon glyphicon-chevron-right"></span></a> </div><!-- /.carousel -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev"><span
+      class="glyphicon glyphicon-chevron-left"></span></a> 
 
-
-
-
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next"><span
+      class="glyphicon glyphicon-chevron-right"></span></a> </div><!-- /.carousel -->
 
       <!-- FOOTER -->
       <footer>
@@ -89,7 +86,6 @@ class="glyphicon glyphicon-chevron-right"></span></a> </div><!-- /.carousel -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>    
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/docs.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
     <script type="text/javascript">
@@ -104,13 +100,13 @@ class="glyphicon glyphicon-chevron-right"></span></a> </div><!-- /.carousel -->
             $json_response = array();
 
             while ($row = mysql_fetch_array($rs, MYSQL_ASSOC)) {
-                $row_array['id'] = $row['id']; 
+                $row_array['id'] = preg_replace('!\\r?\\n!', "", $row['id']); 
                 $row_array['nombre'] = $row['nombre'];
                 $row_array['foto'] = $row['foto']; 
-                $row_array['receta'] = $row['receta']; 
+                $row_array['receta'] = preg_replace('!\\r?\\n!', "</br>", $row['receta']); 
 
-          //push the values in the array
-          array_push($json_response,$row_array);
+                //push the values in the array
+                array_push($json_response,$row_array);
             }
             echo json_encode($json_response);
 
@@ -149,8 +145,9 @@ class="glyphicon glyphicon-chevron-right"></span></a> </div><!-- /.carousel -->
   </script>
 
 
+</body>
 
-
+</html>
 
 
 

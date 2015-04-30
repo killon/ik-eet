@@ -9,19 +9,20 @@
   // $user_id = $_SESSION['sess_user_id'];
   // $user_email = $_SESSION['sess_username'];
 
-  $plato_nombre  = nl2br($_POST['plato_nombre']);
-  $plato_receta  = nl2br($_POST['plato_receta']);
-  $plato_tipo  = nl2br($_POST['plato_tipo']);
-  $plato_tipo2  = nl2br($_POST['plato_tipo2']);
-
+  if(!get_magic_quotes_gpc()){ 
+    $plato_nombre  = mysql_real_escape_string($_POST['plato_nombre']);
+    $plato_receta  = mysql_real_escape_string($_POST['plato_receta']);
+    $plato_tipo  = mysql_real_escape_string($_POST['plato_tipo']);
+    $plato_tipo2  = mysql_real_escape_string($_POST['plato_tipo2']);
+  }
   // Si ha guardado una foto de un producto, subela al server y guarda el path en la db
 
   if ($_FILES['form_data']['name']!="") {
-  $name = $_FILES['form_data']['name'];
-  $target = "images/";  
-  $target = $target . basename( $_FILES['form_data']['name']);
-      //Writes the photo to the server  
-  move_uploaded_file($_FILES['form_data']['tmp_name'], $target);   
+    $name = $_FILES['form_data']['name'];
+    $target = "images/";  
+    $target = $target . basename( $_FILES['form_data']['name']);
+        //Writes the photo to the server  
+    move_uploaded_file($_FILES['form_data']['tmp_name'], $target);   
 
   }
 
